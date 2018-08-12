@@ -1,0 +1,8 @@
+html * {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page {
+  margin: 0px auto;
+}
