@@ -82,11 +82,13 @@ export default class Landing extends Component {
           </div> 
           <div className="articleList">
             <h3>Recent Articles</h3>
-            {
-              this.state.articles.map((article, i) => (
-                <ArticleCard key={i} article={article} />
-              ))
-            }
+            <div className="articlesContainer">
+              {
+                this.state.articles.map((article, i) => (
+                  <ArticleCard key={i} article={article} />
+                ))
+              }
+            </div>
           </div>
         <Footer />
       </div>

@@ -86,3 +86,45 @@
   font-size: 12px;
   letter-spacing: 1px;
 }
+
+@media screen and (max-width: 768px) {
+  .footerContainer .footerGrid {
+    flex-direction: column;
+  }
+  .footerContainer .titleContainer {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+  .footerContainer .subsContainer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .footerContainer .subsContainer p {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+  .footerContainer .inputContainer {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 30px;
+  }
+  .footerContainer .inputContainer input {
+    width: 100%;
+  }
+  .footerContainer .interestContainer {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+  .footerContainer .interestContainer .blockContainer {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  .footerContainer .interestContainer .blockContainer .block {
+    width: 150px;
+    height: 150px;;
+  }
+}

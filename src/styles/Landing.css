@@ -24,7 +24,7 @@
   font-size: 38px;
   color: #fff;
   font-weight: 400;
-  width: 50%;
+  max-width: 580px;
   margin: 10px 0;
   line-height: 42px;
 }
@@ -86,7 +86,46 @@
 
 .articleList {
   padding-bottom: 30px;
+}
+.articleList h3 {
+  text-align: center;
+}
+.articleList .articlesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .topContainer .titleContainer {
+    padding: 0 20px;
+  }
+  .topContainer .titleContainer h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+ .articleList {
+   padding: 30px 15px;
+ } 
+ .articleList .articlesContainer {
+    flex-wrap: wrap;
+ }
+ .topContainer .articlesContainer {
+   flex-direction: column;
+   align-items: flex-start;
+   margin-bottom: 20px;
+ }
+ .topContainer .articlesContainer .coverArticle {
+   border-right: none;
+   margin: 5px 0;   
+   padding: 15px 0;
+   width: 100%;
+   max-width: 50%;
+   border-bottom: 1px solid #fff;
+   min-height: 50px;
+ }
+ .topContainer .articlesContainer .coverArticle.last {
+   border-bottom: none;
+ }
 }
