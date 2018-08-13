@@ -1,0 +1,52 @@
+.articleCard {
+  display: flex;
+  height: 220px;
+  max-width: 800px;
+  margin: 20px 0;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(32, 33, 47, .08);
+}
+.articleCard .imageContainer {
+  height: 100%;
+  width: 30%;
+  overflow: hidden;
+}
+.articleCard .imageContainer img {
+  height: 100%;
+  width: 100%  
+}
+.articleCard .infoContainer {
+  width: 70%;
+  padding: 15px 0;
+}
+.articleCard h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 15px 0px 15px;
+}
+.articleCard .category {
+  color: brown;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  line-height: 10px;
+  margin: 15px 0 0 15px;
+}
+.articleCard p {
+  font-size: 14px;
+  color: #20212F;
+  margin: 10px 15px;
+  font-weight: 300;
+}
+.articleCard .footer {
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  border-top: 1px solid #eee;
+  width: inherit;
+  padding: 15px;
+  margin: 0;
+  justify-content: space-between;
+  font-weight: 100;
+}
