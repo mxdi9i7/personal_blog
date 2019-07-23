@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "apollo-client": "^2.6.3",
+    "apollo-link-http": "^1.5.15",
     "axios": "^0.18.0",
     "moment": "^2.22.2",
     "node-sass": "^4.12.0",
