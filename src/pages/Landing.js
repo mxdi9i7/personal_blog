@@ -1,97 +1,87 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-// import axios from 'axios'
-import ArticleCard from '../components/ArticleCard'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import CoverArticle from '../components/CoverArticle'
-import '../styles/Landing.css'
-import {articles} from '../seeds/articles';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Query } from "react-apollo";
+import { withRouter } from "react-router";
 
+import ArticleCard from "../components/ArticleCard/index";
+import CoverArticle from "../components/CoverArticle";
 
-export default class Landing extends Component {
-  constructor (props) {
-    super(props)
+import { getRecentBlogs, getFeaturedBlogs } from "../queries/blogs";
+import "../components/ArticleCard/index.scss";
+import "../styles/Landing.scss";
+
+class Landing extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      articles: [],
       coverIndex: 0,
-      popular: [{image: ''},{image: ''},{image: ''}]
-    }
-    this.handleCoverArticleHover = this.handleCoverArticleHover.bind(this)
+      recentBlogs: [],
+      featuredBlogs: [{ heroImage: { url: "" } }]
+    };
   }
 
-  async componentDidMount () {
-    await this.loadArticles()
-    this.loadPopularArticles()
-  }
-  
-  loadArticles() {
-    const data = articles
-    this.setState({articles: data})
-  }
+  handleCoverArticleHover = i => {
+    this.setState({ coverIndex: i });
+  };
 
-  loadPopularArticles() {
-    const articles = this.state.articles
-    articles.sort((a, b) => a.views - b.views)
+  componentDidMount = async () => {
+    const feature = await this.fetchFeaturedBlogs();
+    const recent = await this.fetchRecentBlogs();
+
     this.setState({
-      popular: articles.slice(0, 3)
-    })
-  }
-  
-  handleCoverArticleHover(i) {
-    this.setState({coverIndex: i})
-  }
-  
+      featuredBlogs: feature.data.allBlogs,
+      recentBlogs: recent.data.allBlogs
+    });
+  };
+
+  fetchFeaturedBlogs = async () => {
+    return this.props.apollo.query({ query: getFeaturedBlogs });
+  };
+
+  fetchRecentBlogs = async () => {
+    return this.props.apollo.query({ query: getRecentBlogs });
+  };
+
   render() {
-    const currentCoverBg = this.state.popular[this.state.coverIndex].image
-    const preloadCover = `
-      body::after{
-        position: absolute; width:0; height:0; overflow:hidden; z-index:-1;
-        content:url(${this.state.popular[0].image}) url(${this.state.popular[1].image}) url(${this.state.popular[2].image});
-      }
-    `
+    const { featuredBlogs, recentBlogs, coverIndex } = this.state;
 
     return (
       <div className="page">
-        <style>
-          {preloadCover}
-        </style>
-        <Navbar />
-          <div  
-            style={{
-              backgroundImage: `url(${currentCoverBg})`
-            }}
-            className="topContainer">
-            <div className="topContainerOverlay"></div>
-            <div className="titleContainer">
-              <span>Top stories</span>
-              <h1>{this.state.popular[this.state.coverIndex].title}</h1>
-              <Link to="/">Continue Reading</Link>
-              <div className="articlesContainer">
-                {
-                  this.state.popular.map((article, i) => (
-                    <CoverArticle 
-                      handleHover={this.handleCoverArticleHover}
-                      title={article.title} 
-                      index={i} 
-                      key={i} />
-                  ))
-                }
-              </div>
-            </div>
-          </div> 
-          <div className="articleList">
-            <h3>Recent Articles</h3>
+        <div
+          style={{
+            backgroundImage: `url(${featuredBlogs[coverIndex].heroImage.url})`
+          }}
+          className="topContainer"
+        >
+          <div className="topContainerOverlay" />
+          <div className="titleContainer">
+            <span>置顶博客</span>
+            <h1>{featuredBlogs[coverIndex].title}</h1>
+            <Link to={`/blog/${featuredBlogs[coverIndex].slug}`}>阅读更多</Link>
             <div className="articlesContainer">
-              {
-                this.state.articles.map((article, i) => (
-                  <ArticleCard key={i} article={article} />
-                ))
-              }
+              {featuredBlogs.map((article, i) => (
+                <CoverArticle
+                  handleHover={this.handleCoverArticleHover}
+                  title={article.title}
+                  index={i}
+                  key={i}
+                />
+              ))}
             </div>
           </div>
-        <Footer />
+        </div>
+
+        <div className="articleList">
+          <h3>最新博客</h3>
+          <div className="articlesContainer">
+            {recentBlogs.map((article, i) => (
+              <ArticleCard key={i} article={article} />
+            ))}
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
+
+export default withRouter(Landing);

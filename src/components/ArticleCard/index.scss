@@ -4,16 +4,19 @@
   max-width: 800px;
   margin: 0 0 20px 0;
   position: relative;
-  box-shadow: 0 10px 30px rgba(32, 33, 47, .08);
+  box-shadow: 0 10px 30px rgba(32, 33, 47, 0.08);
 }
 .articleCard .imageContainer {
   height: 100%;
   width: 30%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
 }
 .articleCard .imageContainer img {
-  height: 100%;
-  width: 100%  
+  height: auto;
+  width: 100%;
 }
 .articleCard .infoContainer {
   width: 70%;
@@ -28,14 +31,14 @@
   color: brown;
   font-weight: 800;
   font-size: 10px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   line-height: 10px;
   margin: 15px 0 0 15px;
 }
 .articleCard p {
   font-size: 14px;
-  color: #20212F;
+  color: #20212f;
   margin: 10px 15px;
   font-weight: 300;
 }
@@ -49,6 +52,10 @@
   margin: 0;
   justify-content: space-between;
   font-weight: 100;
+
+  a {
+    color: #666;
+  }
 }
 
 @media screen and (max-width: 768px) {

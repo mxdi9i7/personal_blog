@@ -1,54 +1,46 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/Footer.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "../styles/Footer.scss";
+import { fetchAllTags } from "../queries/tags";
 
 class Footer extends Component {
-  render () {
+  state = {
+    tags: []
+  };
+  async componentDidMount() {
+    const tags = await this.props.apollo.query({
+      query: fetchAllTags
+    });
+    this.setState({ tags: tags.data.allTags });
+  }
+  render() {
     return (
       <div className="footerContainer">
         <div className="footerContent">
-          <div className="titleContainer">
-            Subscribe to the mailing list
-          </div>
+          <div className="titleContainer">订阅我的周刊</div>
           <div className="footerGrid">
             <div className="subsContainer">
-              <p>
-                If you're interested in receiving updates from my blog, leave your 
-                email down below and you will be hearing from me!
-              </p>
+              <p>如果你想每周收到我的博客更新的话，可以在这里留下你的邮箱 :)</p>
               <div className="inputContainer">
-                <input placeholder="Your email address" type="text"/>
-                <button>Submit</button>
+                <input placeholder="你的邮箱" type="text" />
+                <button>订阅</button>
               </div>
             </div>
             <div className="interestContainer">
-              <p>Pick a category that you're interested in</p>
+              <p>选择一个你感兴趣的主题吧</p>
               <div className="blockContainer">
-                <div className="block">Interest</div>
-                <div className="block">Interest</div>
-                <div className="block">Interest</div>
-                <div className="block">Interest</div>
-                <div className="block">Interest</div>
-                <div className="block">Interest</div>
+                {this.state.tags.map((v, i) => (
+                  <Link key={i} to={`/tags/${v.slug}`} className="block">
+                    {v.title}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="bottomBar">
-          <div className="logoContainer">
-          
-          </div>
-          <div className="linksContainer">
-            <Link to="/">Home</Link>
-            <Link to="/about">About Me</Link>
-            <Link to="/projects">Past Projects</Link>
-            <Link to="/blog">All blogs</Link>
-            <Link to="/contact">Contact me</Link>
-          </div>
-        </div>
       </div>
-    )
+    );
   }
 }
 
-export default Footer
+export default Footer;
