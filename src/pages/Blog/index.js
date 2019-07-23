@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import { getBlogContent } from "../../queries/blogs";
+import moment from "moment";
+import "./index.scss";
 
 function BlogPage({ apollo, location }) {
-  const [blog, setBlog] = useState({});
+  const [blog, setBlog] = useState({ heroImage: {} });
   useEffect(() => {
     const fetchBlogContent = async () => {
       const data = await apollo.query({
@@ -17,8 +19,16 @@ function BlogPage({ apollo, location }) {
 
   console.log(blog);
   return (
-    <div>
-      <div>{blog.title}</div>
+    <div className="page-wrapper">
+      <div className="page-content">
+        <img src={blog.heroImage.url} alt="" />
+        <div className="header">
+          <h1>{blog.title}</h1>
+          <p>{moment(blog._publishedAt).format("LLL")}</p>
+        </div>
+        <hr />
+        <div className="body" dangerouslySetInnerHTML={{ __html: blog.body }} />
+      </div>
     </div>
   );
 }
