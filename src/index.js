@@ -11,6 +11,8 @@ import { ApolloProvider } from "react-apollo";
 
 const token = process.env.REACT_APP_DATO_TOKEN;
 
+console.log(token);
+
 const httpLink = createHttpLink({
   uri: "https://graphql.datocms.com/"
 });
