@@ -23,7 +23,7 @@ const ArticleCard = ({ article }) => {
         </p>
         <div className="divider" />
         <div className="footer">
-          <div>发布于 {moment(article._publishedAt, "YYYYMMDD").fromNow()}</div>
+          <div>发布于 {moment(article._publishedAt).format("LL")}</div>
           <Link to={`/blog/${article.slug}`}>阅读更多</Link>
         </div>
       </div>
