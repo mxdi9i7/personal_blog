@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { getBlogContent } from "../../queries/blogs";
 import moment from "moment";
 import "./index.scss";
+import Body from "./Body";
 
 function BlogPage({ apollo, location }) {
   const [blog, setBlog] = useState({ heroImage: {} });
@@ -16,8 +17,6 @@ function BlogPage({ apollo, location }) {
     };
     fetchBlogContent();
   });
-
-  console.log(blog);
   return (
     <div className="page-wrapper">
       <div className="page-content">
@@ -26,7 +25,9 @@ function BlogPage({ apollo, location }) {
           <h1>{blog.title}</h1>
           <p>{moment(blog._publishedAt).format("LLL")}</p>
         </div>
+        <div className="excerpt">{blog.excerpt}</div>
         <hr />
+        <Body data={blog.articleBody} />
         <div className="body" dangerouslySetInnerHTML={{ __html: blog.body }} />
       </div>
     </div>

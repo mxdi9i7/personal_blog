@@ -37,6 +37,26 @@ export const getBlogContent = gql`
       title
       body
       excerpt
+      articleBody {
+        ... on BodyTextRecord {
+          body(markdown: true)
+        }
+        ... on CodeBlockRecord {
+          id
+          codeBlock(markdown: true)
+        }
+        ... on VideoRecord {
+          video {
+            url
+          }
+        }
+        ... on ImageRecord {
+          image {
+            url
+            title
+          }
+        }
+      }
       _publishedAt
       heroImage {
         url

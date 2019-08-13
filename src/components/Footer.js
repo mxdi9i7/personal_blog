@@ -15,7 +15,7 @@ class Footer extends Component {
   }
   render() {
     return (
-      <div className="footerContainer">
+      <footer className="footerContainer">
         <div className="footerContent">
           <div className="titleContainer">订阅我的周刊</div>
           <div className="footerGrid">
@@ -38,7 +38,7 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </footer>
     );
   }
 }

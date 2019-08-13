@@ -1,0 +1,16 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "BlogModelArticleBodyField",
+        "possibleTypes": [
+          { "name": "BodyTextRecord" },
+          { "name": "CodeBlockRecord" },
+          { "name": "VideoRecord" },
+          { "name": "ImageRecord" }
+        ]
+      }
+    ]
+  }
+}

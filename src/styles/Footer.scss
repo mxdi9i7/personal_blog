@@ -1,11 +1,13 @@
-.footerContainer {
+footer {
   width: 100%;
   background-image: url("https://res.cloudinary.com/dtgh01qqo/image/upload/v1563907499/Shapes_w0hnmv.png");
   background-size: cover;
 }
 .footerContent {
   width: inherit;
-  padding: 60px 10%;
+  padding: 60px 0;
+  max-width: 1444px;
+  margin: 0 auto;
 }
 .footerContainer .titleContainer {
   font-size: 32px;
@@ -127,5 +129,12 @@
   .footerContainer .interestContainer .blockContainer .block {
     width: 150px;
     height: 150px;
+  }
+}
+
+@media screen and (max-width: 1444px) {
+  .footerContent {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
