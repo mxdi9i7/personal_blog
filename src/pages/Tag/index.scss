@@ -1,0 +1,28 @@
+.page-wrapper {
+  background-color: rgb(249, 250, 252);
+  margin-top: 80px;
+  padding: 40px 0;
+
+  .page-content {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .header {
+      text-align: center;
+      h1 {
+      }
+    }
+    .footer {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
